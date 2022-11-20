@@ -1,0 +1,38 @@
+
+  HttpClient client = new HttpClient();
+
+var stringPayload = JsonConvert.SerializeObject(value);
+//var content = new FormUrlEncodedContent(value);
+var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
+
+var response = await client.PostAsync("http://localhost:15000/api/Procurments", httpContent);
+
+var responseString = await response.Content.ReadAsStringAsync();
+
+{Method = {System.Threading.Tasks.Task`1[System.String] ReadAsStringAsync()}}
+{StatusCode: 200, ReasonPhrase: 'OK', Version: 1.1, Content: System.Net.Http.StreamContent, Headers:
+{
+  Pragma: no-cache
+  X-SourceFiles: =?UTF-8?B?RDpcSW50ZWdyYXRlZFByb2plY3RcTmlLYW5cQXBwXFZlcnNpb25Db25udHJvbFxBenVyZVxTdG9yZVByb3ZpZGVyTVdcU3RvcmVBcHBcYXBpXFByb2N1cm1lbnRz?=
+  Cache-Control: no-cache
+  Date: Sun, 20 Nov 2022 13:37:59 GMT
+  Server: Microsoft-IIS/10.0
+  X-AspNet-Version: 4.0.30319
+  X-Powered-By: ASP.NET
+  Content-Length: 0
+  Expires: -1
+}}
+
+{StatusCode: 400, ReasonPhrase: 'Bad Request', Version: 1.1, Content: System.Net.Http.StreamContent, Headers:
+{
+  Pragma: no-cache
+  X-SourceFiles: =?UTF-8?B?RDpcSW50ZWdyYXRlZFByb2plY3RcTmlLYW5cQXBwXFZlcnNpb25Db25udHJvbFxBenVyZVxTdG9yZVByb3ZpZGVyTVdcU3RvcmVBcHBcYXBpXFByb2N1cm1lbnRz?=
+  Cache-Control: no-cache
+  Date: Sun, 20 Nov 2022 13:40:20 GMT
+  Server: Microsoft-IIS/10.0
+  X-AspNet-Version: 4.0.30319
+  X-Powered-By: ASP.NET
+  Content-Length: 60
+  Content-Type: application/json; charset=utf-8
+  Expires: -1
+}}
