@@ -10,3 +10,28 @@
    var content = response.Content; // Raw content as string
    var response2 = client.Post<Person>(request);
    var name = response2.Data.Name;
+   
+   
+   
+   
+   ----------------------------------------------
+      //var authBytes = System.Text.Encoding.UTF8.GetBytes(string.Format("{0},{1}", data["key"], data["secret"]));
+            //string auth =  System.Convert.ToBase64String(authBytes);
+
+            string auth = data["authenticationKey"]; 
+            var grantType = "password";
+            var username = data["username"];
+            var password = data["password"];
+
+            var client = new RestClient(url);
+            // client.Authenticator = new HttpBasicAuthenticator(username, password);
+           
+            var request = new RestRequest("oauth/token");
+            request.Method = Method.Post;
+            request.AddHeader("Authorization", "Basic "+auth);
+            request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+
+
+            request.AddParameter("application/x-www-form-urlencoded", $"grant_type={grantType}&username={username}&password={password}", ParameterType.RequestBody);
+
+            RestResponse response = client.Execute(request);
